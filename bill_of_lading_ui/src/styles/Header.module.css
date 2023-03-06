@@ -1,0 +1,49 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 20px;
+	width: 100%;
+
+}
+
+.nav p {
+	width: 25%;
+	text-transform: capitalize;
+	font-size: 35px;
+	font-weight: 600;
+
+}
+
+.nav ul {
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+width: 50%;
+}
+
+.nav ul li {
+ list-style: none;
+ text-transform: capitalize;
+ font-size: 20px;
+
+
+}
+
+.nav div {
+	display: flex;
+	align-items: center;
+	width: 25%;
+	
+}
+
+.nav div button {
+	text-transform: capitalize;
+	width: 35%;
+	padding: 10px 0;
+	margin-right: 15px;
+}
+.nav div p {
+	font-size: 16px;
+
+}
