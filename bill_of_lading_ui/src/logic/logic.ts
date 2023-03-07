@@ -91,5 +91,28 @@ export async function sendOrder(id: string, _type: number) {
 
 }
 
+export async function listReceipts(_type: number) {
+
+	if (!accounts) {
+		await connect()
+	}
+	let receipt = [];
+	const signer = provider.getSigner();
+	const billContract = new ethers.Contract(address, BillABI.abi, provider);
+	let orders: any
+	if (_type == 0) {
+		orders = await billContract.getCarreirOrder(accounts[0]);
+	} else {
+		orders = await billContract.getBuyerOrder(accounts[0]);
+	}
+	for (let i = 0; i < orders.length; i++) {
+		let ord = await billContract.getOrderById(orders[i].toString());
+		let newObj = { ...ord, orderId: orders[i].toString() }
+		receipt.push(newObj);
+	}
+	console.log(receipt)
+	return receipt;
+}
+
 
 
