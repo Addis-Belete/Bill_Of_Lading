@@ -3,7 +3,7 @@ import BillABI from "../../../out/BillOfLading.sol/BillOfLading.json";
 declare let window: any;
 let provider: any;
 export let accounts: string;
-let address: string = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
+let address: string = "0x036663fFb0636e9abbE90354b9d2ca9889F085b2";
 export async function connect() {
 	if (window.ethereum) {
 		provider = new ethers.providers.Web3Provider(window.ethereum);

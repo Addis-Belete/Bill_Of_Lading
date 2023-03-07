@@ -34,7 +34,7 @@ export default function Home({ provider }: any) {
          && 
           <p className={styles.modal}>
             {success
-              ? <span>Receipt Successfully Generated: <a href={`http://localhost:8584/${success}`}>view on expolerer</a></span>
+              ? <span>Receipt Successfully Generated: <a href={`https://mumbai.polygonscan.com/tx/${success}`}>view on expolerer</a></span>
               : "Transaction Failed"}
           </p>
         }
