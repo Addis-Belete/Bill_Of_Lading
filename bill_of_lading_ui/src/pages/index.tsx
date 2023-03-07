@@ -18,6 +18,7 @@ export default function Home({ provider }: any) {
 
   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
+ 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (success || err) {

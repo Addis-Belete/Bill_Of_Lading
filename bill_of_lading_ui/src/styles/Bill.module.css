@@ -1,0 +1,40 @@
+.bill {
+ width: 90%;
+ margin: auto;
+border-collapse: collapse;
+margin-top: 20px;
+
+}
+.div{
+ margin-top: 100px;
+
+}
+.bill th {
+padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3d7c6a;
+  color: white;
+
+
+}
+.bill th, .bill td {
+border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.bill tr th {
+ width: 11%;
+
+
+}
+
+
+.bill tr td {
+	width: 11%;
+	margin-left: 20px;
+}
+
+
+
+
