@@ -1,9 +1,12 @@
 import styles from "@/styles/Bill.module.css";
 import { listOrders } from "@/logic/logic";
-export default function Bill({order}: any) {
+import BillData from "./billData";
+export default function Bill({orders}: any) {
+	
   return (
     <div className={styles.div}>
       <table className={styles.bill}>
+	<thead>
         <tr>
           <th>Buyer</th>
           <th>Carreir</th>
@@ -14,16 +17,18 @@ export default function Bill({order}: any) {
           <th>Send To Carreir </th>
           <th>Send To Buyer</th>
         </tr>
-        <tr>
-          <td>0xd9...112bb1bbf558</td>
-          <td>0xd9...112bb1bbf558</td>
-          <td>100200</td>
-          <td>Sehan</td>
-          <td>2000</td>
-          <td>200000</td>
-          <td ><button onClick={async() => await listOrders()}>send</button></td>
-          <td>Send</td>
-        </tr>
+</thead>
+<tbody>
+{orders.map((order: any, index: number) => {
+	return(
+
+ <BillData order={order} index = {index}/>
+)
+
+
+})}
+       
+</tbody>
       </table>
     </div>
   );

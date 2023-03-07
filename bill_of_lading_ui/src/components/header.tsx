@@ -8,8 +8,13 @@ export default function Header() {
 		return(`${addr.substring(0, 4)}...${addr.substring(30, addr.length)}`)
 
 	}
+	const conn = async() => {
+		let acc = await connect();
+		setAccount(acc);
+
+	}
 	useEffect(() => {
-		 connect().then((res:string) => setAccount(res))
+		 conn()
 
 	})
   return (
