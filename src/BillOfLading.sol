@@ -12,17 +12,16 @@ contract BillOfLading is ERC1155 {
         uint256 quantity;
         uint256 number;
         uint256 price;
-        bool init;
 		bool isSentToCarrier;
 		bool isSentToBuyer;
 
     }
 
-    mapping (uint256 => OrderData) public orders;
-	mapping(address => uint256[]) public sellerOrders;
-	mapping(address => uint256[]) public carreirOrders;
-	mapping(address => uint256[]) public buyerOrders;
-	uint256 id;
+    mapping (uint256 => OrderData) internal orders;
+	mapping(address => uint256[]) internal sellerOrders;
+	mapping(address => uint256[]) internal carreirOrders;
+	mapping(address => uint256[]) internal buyerOrders;
+	uint256 internal id;
 
 	event NewBillGenerated(address by, uint256 id);
 	event BillSentToCarreir(address seller, address carrier, uint256 id);
@@ -44,7 +43,6 @@ contract BillOfLading is ERC1155 {
 		OrderData storage _orderData = orders[_id];
 		require(_orderData.seller == msg.sender, "Only called by seller");
 		require(!_orderData.isSentToCarrier, "already sent to carreir");
-
 		_orderData.isSentToCarrier = true;
 		carreirOrders[_orderData.carrier].push(_id);
 		safeTransferFrom(msg.sender, _orderData.carrier, _id, 1, "data");
@@ -62,6 +60,22 @@ contract BillOfLading is ERC1155 {
 		safeTransferFrom(msg.sender, _orderData.buyer, _id, 1, 'data');
 
 		emit BillSentToBuyer(msg.sender, _orderData.buyer, _id);
+
+	}
+
+	function getOrderById(uint256 _id) external view returns(OrderData memory){
+		return orders[_id];
+	}
+	function getSellerOrder(address _sellerAddress) external view returns(uint256[] memory){
+		return sellerOrders[_sellerAddress];
+	}
+
+	function getCarreirOrder(address _carreirAddress) external view returns(uint256[] memory){
+		return carreirOrders[_carreirAddress];
+	}
+
+	function getBuyerOrder(address _buyerAddress) external view returns(uint256[] memory){
+		return buyerOrders[_buyerAddress];
 
 	}
 }
