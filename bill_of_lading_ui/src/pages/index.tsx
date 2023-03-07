@@ -30,16 +30,16 @@ export default function Home({ provider }: any) {
   }, [success, err]);
   return (
     <>
-      {success ||
-        (err && (
+      {success
+         && 
           <p className={styles.modal}>
             {success
-              ? <span>Transaction Successfull <a href={`http://localhost:8584/${success}`}>view on expolerer</a></span>
+              ? <span>Receipt Successfully Generated: <a href={`http://localhost:8584/${success}`}>view on expolerer</a></span>
               : "Transaction Failed"}
           </p>
-        ))}
+        }
       <form className={styles.form}>
-        <label htmlFor="byeer">buyer</label>
+        <label htmlFor="buyer">buyer</label>
         <input
           type="text"
           id="buyer"
