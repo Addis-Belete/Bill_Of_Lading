@@ -1,9 +1,9 @@
 import Header from "./header";
 
-export default function Layout({ children, connect, account }: any) {
+export default function Layout({ children }: any) {
   return (
     <>
-      <Header connect={connect} account={account}/>
+      <Header />
       <main>{children}</main>
     </>
   );

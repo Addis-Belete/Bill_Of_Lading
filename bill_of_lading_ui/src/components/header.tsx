@@ -1,6 +1,17 @@
 import styles from "@/styles/Header.module.css"
-export default function Header({connect, account}:any) {
-	console.log(account)
+import { connect
+ } from "@/logic/logic";
+import { useEffect, useState } from "react";
+export default function Header() {
+	const [account, setAccount] = useState("")
+	 const trunc = (addr: string) => {
+		return(`${addr.substring(0, 4)}...${addr.substring(30, addr.length)}`)
+
+	}
+	useEffect(() => {
+		 connect().then((res:string) => setAccount(res))
+
+	})
   return (
     <nav className={styles.nav}>
       <p>Bill Of Lading</p>
@@ -12,8 +23,8 @@ export default function Header({connect, account}:any) {
 		<li>buyers bills</li>
       </ul>
       <div>
-        <button onClick={connect}>{account ?  "Connected" : "Connect"}</button>
-        <p>{account}</p>
+        <button onClick={async() => await connect().then((res: any)=> setAccount(res))}>{account ?  "Connected" : "Connect"}</button>
+        <p>{trunc(account)}</p>
       </div>
     </nav>
   );

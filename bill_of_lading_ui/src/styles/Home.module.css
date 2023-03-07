@@ -1,29 +1,44 @@
 .form {
-width: 35%;
-margin: 100px auto;
-
-
+  width: 35%;
+  margin: 100px auto 5px auto;
 }
 
 .form label {
-	
-	display: block;
-	text-transform: capitalize;
-	margin-bottom: 5px;
+  display: block;
+  text-transform: capitalize;
+  margin-bottom: 5px;
 }
 
 .form input {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+ .button {
+display: block;
+  width: 10%;
+  padding: 10px;
+  text-transform: capitalize;
+  font-size: 17px;
+  font-weight: 500;
+margin: 0 auto;
+}
+
+.modal {
+ text-align: center;
+ font-size: 17px;
+color: red;
 
 }
 
-.form button{
- width: 30%;
-	padding: 10px;
-	text-transform: capitalize;
-	font-size: 17px;
-	font-weight: 500;
+.modal span {
+	color: green;
+	
+}
+
+.modal span a {
+	color: blue;
+	text-decoration: underline;
+
 }
