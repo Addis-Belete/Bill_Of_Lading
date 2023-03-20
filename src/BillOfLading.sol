@@ -16,6 +16,21 @@ contract BillOfLading is ERC1155 {
 		bool isSentToBuyer;
 
     }
+	struct Shipper{
+		string physicalShipperAddress;
+		address shipperWalletAddress;
+	}
+
+	struct Consignee {
+		string physicalConsigneeAddress;
+		address consigneeAddress;
+	}
+
+	struct ReceiptData {
+		string preCarriageBy;
+
+
+	}
 
     mapping (uint256 => OrderData) internal orders;
 	mapping(address => uint256[]) internal sellerOrders;
