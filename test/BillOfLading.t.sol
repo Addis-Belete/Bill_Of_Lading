@@ -29,25 +29,28 @@ contract BillTest is Test {
             placeOfReceiptByPreCarrier: "Addis Ababa",
             portOfLoading: "Dubai",
             placeOfDeliveryByOnCarrier: "Mojo",
-            custeomReference: "12345",
+            customReference: "12345",
             shipperReference: "5678",
             fAgentsReference: "98764",
-            billNumber: "64373829",
+            billNumber: 64373829,
             referenceNumber: "2949395",
-            preCarraigePayableAt: "Addis Abab",
-            onCarraigePayableAt: "Addis Ababa",
+            preCarriagePayableAt: "Addis Abab",
+            onCarriagePayableAt: "Addis Ababa",
             numberOfBill: 3,
             issuedAt: 0,
             freightPayableAt: "Addis Ababa",
-            NumberOfOrginalBSL: 1,
+            NumberOfOriginalBSL: 1,
             forCarrier: "Yes",
             isSentToCarrier: true,
-            isSentToBuyer: true
+            isSentToBuyer: true,
+			 freightAndCharges: "Yes"
         });
 
+	
+
 		BillOfLading.Package[] memory package = new BillOfLading.Package[](2);
-		package[0] = BillOfLading.Package("New contrainer", 2000, 20);
-		package[1] = BillOfLading.Package("New three contrainer", 3000, 30);
+		package[0] = BillOfLading.Package(1, "1","New contrainer", 2000, 20);
+		package[1] = BillOfLading.Package(1, "2","New three contrainer", 3000, 30);
 		vm.startPrank(address(50));
 		bill.generateBillOfLading(data, package);
 		vm.stopPrank();
@@ -62,7 +65,7 @@ contract BillTest is Test {
 		(BillOfLading.ReceiptData memory _receipt,) = bill.getOrderById(1);
 		vm.stopPrank();
 		console.log(_receipt.isSentToCarrier, _receipt.isSentToBuyer, _receipt.issuedAt);
-		uint256[] memory buyerOrders = bill.getBuyerOrder(_receipt.consignee.consigneeWalletAddress);
+		uint256[] memory buyerOrders = bill.getBuyerOrder(_receipt.consignee.walletAddress);
 		console.log(buyerOrders[0]);
 
 	}
@@ -74,7 +77,7 @@ contract BillTest is Test {
 		(BillOfLading.ReceiptData memory _receipt,) = bill.getOrderById(1);
 		vm.stopPrank();
 		console.log(_receipt.isSentToCarrier, _receipt.isSentToBuyer, _receipt.issuedAt);
-		uint256[] memory CarreirOrders = bill.getCarreirOrder(_receipt.carreir.carreirWalletAddress);
+		uint256[] memory CarreirOrders = bill.getCarreirOrder(_receipt.carreir.walletAddress);
 		console.log(CarreirOrders[0]);
 
 	}

@@ -17,27 +17,28 @@ contract BillOfLading is ERC1155 {
 
     }
 	struct Shipper{
-		string physicalShipperAddress;
-		address shipperWalletAddress;
+		string physicalAddress;
+		address walletAddress;
 	}
 
 	struct Consignee {
-		string physicalConsigneeAddress;
-		address consigneeWalletAddress;
+		string physicalAddress;
+		address walletAddress;
 
 	}
 
 	struct Carreir {
-		string carreirPhysicalAddress;
-		address carreirWalletAddress;
+		string physicalAddress;
+		address walletAddress;
 
 	}
 
 	struct Package {
+		uint256 marksAndNos;
+		string contNumber;
 		string description;
 		uint256 grossWeight;
-		uint256 measurments;
-		
+		uint256 measurement;
 	}
 
 	struct ReceiptData {
@@ -45,25 +46,26 @@ contract BillOfLading is ERC1155 {
 		Consignee consignee;
 		Carreir carreir;
 		string preCarriageBy;
-		string vessel;
-		string portOfDischarge;
-		string placeOfReceiptByPreCarrier;
-		string portOfLoading;
-		string placeOfDeliveryByOnCarrier;
-		string custeomReference;
-		string shipperReference;
-		string fAgentsReference;
-		string billNumber;
-		string referenceNumber;
-		string preCarraigePayableAt;
-		string onCarraigePayableAt;
- 		uint256 numberOfBill;
-		uint256 issuedAt;
-		string freightPayableAt;
-		uint256 NumberOfOrginalBSL;
-		string forCarrier;
-		bool isSentToCarrier;
-		bool isSentToBuyer;
+        string  placeOfReceiptByPreCarrier;
+        string  vessel;
+        string  portOfLoading;
+        string  portOfDischarge;
+        string  placeOfDeliveryByOnCarrier;
+        string  customReference;
+        uint256  billNumber;
+        string  shipperReference;
+        string  fAgentsReference;
+        string  referenceNumber;
+        string  preCarriagePayableAt;
+        string  onCarriagePayableAt;
+        uint256  numberOfBill;
+        uint256  issuedAt;
+        string  forCarrier;
+        string  freightPayableAt;
+        uint256  NumberOfOriginalBSL;
+        bool  isSentToCarrier;
+        bool  isSentToBuyer;
+        string  freightAndCharges;
 	}
 
 
@@ -101,9 +103,9 @@ contract BillOfLading is ERC1155 {
 		//require(_orderData.seller == msg.sender, "Only called by seller");
 		require(!_orderData.isSentToCarrier, "already sent to carreir");
 		_orderData.isSentToCarrier = true;
-		carreirOrders[_orderData.carreir.carreirWalletAddress].push(_id);
-		safeTransferFrom(msg.sender, _orderData.shipper.shipperWalletAddress, _id, 1, "data");
-		emit BillSentToCarreir(msg.sender, _orderData.shipper.shipperWalletAddress, _id);
+		carreirOrders[_orderData.carreir.walletAddress].push(_id);
+		safeTransferFrom(msg.sender, _orderData.shipper.walletAddress, _id, 1, "data");
+		emit BillSentToCarreir(msg.sender, _orderData.shipper.walletAddress, _id);
 
 	}
 
@@ -113,10 +115,10 @@ contract BillOfLading is ERC1155 {
 		require(!_orderData.isSentToBuyer, "already sent");
 
 		_orderData.isSentToBuyer = true;
-		buyerOrders[_orderData.consignee.consigneeWalletAddress].push(_id);
-		safeTransferFrom(msg.sender, _orderData.consignee.consigneeWalletAddress, _id, 1, 'data');
+		buyerOrders[_orderData.consignee.walletAddress].push(_id);
+		safeTransferFrom(msg.sender, _orderData.consignee.walletAddress, _id, 1, 'data');
 
-		emit BillSentToBuyer(msg.sender, _orderData.consignee.consigneeWalletAddress, _id);
+		emit BillSentToBuyer(msg.sender, _orderData.consignee.walletAddress, _id);
 
 	}
 
