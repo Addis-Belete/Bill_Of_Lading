@@ -3,19 +3,7 @@ pragma solidity ^0.8.13;
 import "../lib/openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol";
 contract BillOfLading is ERC1155 {
 
-	struct OrderData {
-        address buyer;
-        address seller;
-        address carrier;
-        uint256 referenceNumber;
-        string goods;
-        uint256 quantity;
-        uint256 number;
-        uint256 price;
-		bool isSentToCarrier;
-		bool isSentToBuyer;
-
-    }
+	
 	struct Shipper{
 		string physicalAddress;
 		address walletAddress;
@@ -69,7 +57,7 @@ contract BillOfLading is ERC1155 {
 	}
 
 
-    mapping (uint256 => OrderData) internal orders;
+    //mapping (uint256 => OrderData) internal orders;
 	mapping (uint256 => ReceiptData) internal receiptData;
 	mapping(address => uint256[]) internal sellerOrders;
 	mapping(address => uint256[]) internal carreirOrders;
